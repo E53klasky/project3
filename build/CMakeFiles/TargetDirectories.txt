@@ -1,3 +1,3 @@
-/home/adios/COP3504C/project3/project3/build/CMakeFiles/image.dir
-/home/adios/COP3504C/project3/project3/build/CMakeFiles/edit_cache.dir
-/home/adios/COP3504C/project3/project3/build/CMakeFiles/rebuild_cache.dir
+/home/adios/project3/build/CMakeFiles/image.dir
+/home/adios/project3/build/CMakeFiles/edit_cache.dir
+/home/adios/project3/build/CMakeFiles/rebuild_cache.dir

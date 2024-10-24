@@ -53,10 +53,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/adios/COP3504C/project3/project3
+CMAKE_SOURCE_DIR = /home/adios/project3
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/adios/COP3504C/project3/project3/build
+CMAKE_BINARY_DIR = /home/adios/project3/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/image.dir/depend.make
@@ -70,32 +70,32 @@ include CMakeFiles/image.dir/progress.make
 include CMakeFiles/image.dir/flags.make
 
 CMakeFiles/image.dir/image.cpp.o: CMakeFiles/image.dir/flags.make
-CMakeFiles/image.dir/image.cpp.o: /home/adios/COP3504C/project3/project3/image.cpp
+CMakeFiles/image.dir/image.cpp.o: /home/adios/project3/image.cpp
 CMakeFiles/image.dir/image.cpp.o: CMakeFiles/image.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/adios/COP3504C/project3/project3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/image.dir/image.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/image.dir/image.cpp.o -MF CMakeFiles/image.dir/image.cpp.o.d -o CMakeFiles/image.dir/image.cpp.o -c /home/adios/COP3504C/project3/project3/image.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/adios/project3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/image.dir/image.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/image.dir/image.cpp.o -MF CMakeFiles/image.dir/image.cpp.o.d -o CMakeFiles/image.dir/image.cpp.o -c /home/adios/project3/image.cpp
 
 CMakeFiles/image.dir/image.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/image.dir/image.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adios/COP3504C/project3/project3/image.cpp > CMakeFiles/image.dir/image.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adios/project3/image.cpp > CMakeFiles/image.dir/image.cpp.i
 
 CMakeFiles/image.dir/image.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/image.dir/image.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adios/COP3504C/project3/project3/image.cpp -o CMakeFiles/image.dir/image.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adios/project3/image.cpp -o CMakeFiles/image.dir/image.cpp.s
 
 CMakeFiles/image.dir/Header.cpp.o: CMakeFiles/image.dir/flags.make
-CMakeFiles/image.dir/Header.cpp.o: /home/adios/COP3504C/project3/project3/Header.cpp
+CMakeFiles/image.dir/Header.cpp.o: /home/adios/project3/Header.cpp
 CMakeFiles/image.dir/Header.cpp.o: CMakeFiles/image.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/adios/COP3504C/project3/project3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/image.dir/Header.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/image.dir/Header.cpp.o -MF CMakeFiles/image.dir/Header.cpp.o.d -o CMakeFiles/image.dir/Header.cpp.o -c /home/adios/COP3504C/project3/project3/Header.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/adios/project3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/image.dir/Header.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/image.dir/Header.cpp.o -MF CMakeFiles/image.dir/Header.cpp.o.d -o CMakeFiles/image.dir/Header.cpp.o -c /home/adios/project3/Header.cpp
 
 CMakeFiles/image.dir/Header.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/image.dir/Header.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adios/COP3504C/project3/project3/Header.cpp > CMakeFiles/image.dir/Header.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adios/project3/Header.cpp > CMakeFiles/image.dir/Header.cpp.i
 
 CMakeFiles/image.dir/Header.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/image.dir/Header.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adios/COP3504C/project3/project3/Header.cpp -o CMakeFiles/image.dir/Header.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adios/project3/Header.cpp -o CMakeFiles/image.dir/Header.cpp.s
 
 # Object files for target image
 image_OBJECTS = \
@@ -109,7 +109,7 @@ image: CMakeFiles/image.dir/image.cpp.o
 image: CMakeFiles/image.dir/Header.cpp.o
 image: CMakeFiles/image.dir/build.make
 image: CMakeFiles/image.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/adios/COP3504C/project3/project3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable image"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/adios/project3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable image"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/image.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -121,6 +121,6 @@ CMakeFiles/image.dir/clean:
 .PHONY : CMakeFiles/image.dir/clean
 
 CMakeFiles/image.dir/depend:
-	cd /home/adios/COP3504C/project3/project3/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/adios/COP3504C/project3/project3 /home/adios/COP3504C/project3/project3 /home/adios/COP3504C/project3/project3/build /home/adios/COP3504C/project3/project3/build /home/adios/COP3504C/project3/project3/build/CMakeFiles/image.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/adios/project3/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/adios/project3 /home/adios/project3 /home/adios/project3/build /home/adios/project3/build /home/adios/project3/build/CMakeFiles/image.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/image.dir/depend
 

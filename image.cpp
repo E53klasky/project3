@@ -35,33 +35,34 @@ layer_green.tga                 text2.tga:Zone.Identifier
         cerr << "Failed to open the file." << endl;
         return 1;
     }
-    vector<unsigned char> buffer(istreambuf_iterator<char>(fileStream), {});
+    vector<unsigned char> data(istreambuf_iterator<char>(fileStream), {});
     
     fileStream.close();
 
-    header.idLength = buffer[0];
-    header.colorMapType = buffer[1];
-    header.dataTypeCode = buffer[2];
-    header.colorMapOrigin = buffer[3] + 1;
-    header.colorMapLength = buffer[5] + 1;
-    header.colorMapDepth = buffer[7];
-    header.xOrigin = buffer[8] + 1;
-    header.yOrigin = buffer[10] +1;
-    header.width = buffer[12] +1;
-    header.height = buffer[14] +1;
-    header.bitsPerPixel = buffer[16];
-    header.imageDescriptor = buffer[17];
+    header.idLength = data[0];
+    header.colorMapType = data[1];
+    header.dataTypeCode = data[2];
+    header.colorMapOrigin = data[3] + 1;
+    header.colorMapLength = data[5] + 1;
+    header.colorMapDepth = data[7];
+    header.xOrigin = data[8] + 1;
+    header.yOrigin = data[10] +1;
+    header.width = data[12] +1;
+    header.height = data[14] +1;
+    header.bitsPerPixel = data[16];
+    header.imageDescriptor = data[17];
+    
+    printHead(header);
 
     // this views the data in the terminal right now!!!!!!!!
-    for (size_t i = 0; i < buffer.size() && i <100; i++)
+    for (size_t i = 0; i < data.size() && i <100; i++)
     {
-        cout<< hex << uppercase<<int(buffer[i])<<"";
+        cout<< hex << uppercase<<int(data[i])<<"";
         if((i+1) % 10 == 0) cout <<endl;
     }
-    
     cout << dec;
 
-
+  
 
     
     return 0;

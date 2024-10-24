@@ -1,5 +1,4 @@
-CMakeFiles/image.dir/image.cpp.o: \
- /home/adios/COP3504C/project3/project3/image.cpp \
+CMakeFiles/image.dir/image.cpp.o: /home/adios/project3/image.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -152,5 +151,4 @@ CMakeFiles/image.dir/image.cpp.o: \
  /usr/include/c++/11/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
- /usr/include/c++/11/bits/fstream.tcc \
- /home/adios/COP3504C/project3/project3/structHeader.h
+ /usr/include/c++/11/bits/fstream.tcc /home/adios/project3/structHeader.h
