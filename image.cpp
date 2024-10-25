@@ -6,6 +6,11 @@
 #include "structHeader.h"
 using namespace std; 
 
+// void multiple(vector<unsigned char> data&)
+// {  
+//     cout<<"hi";
+
+// }
 
 
 int main()
@@ -26,44 +31,54 @@ layer_blue.tga:Zone.Identifier  text2.tga
 layer_green.tga                 text2.tga:Zone.Identifier
     */
     
+    // file stream for ins 
     fstream fileStream("../input/circles.tga", ios::in | ios::binary);
 
-    Header header;
+    Header* header = new Header;
 
 
      if (!fileStream) {
         cerr << "Failed to open the file." << endl;
         return 1;
     }
-    vector<unsigned char> data(istreambuf_iterator<char>(fileStream), {});
+
     
-    fileStream.close();
+   
+    // cast to character
+    //  get(destination, size, delimiter
+    // mine is not a pointer so do .
 
-    header.idLength = data[0];
-    header.colorMapType = data[1];
-    header.dataTypeCode = data[2];
-    header.colorMapOrigin = data[3] + 1;
-    header.colorMapLength = data[5] + 1;
-    header.colorMapDepth = data[7];
-    header.xOrigin = data[8] + 1;
-    header.yOrigin = data[10] +1;
-    header.width = data[12] +1;
-    header.height = data[14] +1;
-    header.bitsPerPixel = data[16];
-    header.imageDescriptor = data[17];
+    fileStream.read(&header->idLength, sizeof(header->idLength));
+    fileStream.read(&header->colorMapType, sizeof(header->colorMapType));
+    fileStream.read(&header->dataTypeCode, sizeof(header->dataTypeCode));
+    fileStream.read((char *) &header->colorMapOrigin, sizeof(header->colorMapOrigin));
+    fileStream.read((char *) &header->colorMapLength, sizeof(header->colorMapLength));
+    fileStream.read( &header->colorMapDepth, sizeof(header->colorMapDepth));
+    fileStream.read((char *) &header->xOrigin, sizeof(header->xOrigin));
+    fileStream.read((char *) &header->yOrigin, sizeof(header->yOrigin));
+    fileStream.read((char *) &header->width, sizeof(header->width));
+    fileStream.read((char *) &header->height, sizeof(header->height));
+    fileStream.read(&header->bitsPerPixel, sizeof(header->bitsPerPixel));
+    fileStream.read(&header->imageDescriptor,sizeof(header->imageDescriptor));
+
+    printHead(*header);
+
+
+
+
+    // DO IT AGAIN FOR OUTS  fstream fileStream("../input/circles.tga", ios::in | ios::binary);
+    fileStream.open("../output");
     
-    printHead(header);
-
-    // this views the data in the terminal right now!!!!!!!!
-    for (size_t i = 0; i < data.size() && i <100; i++)
-    {
-        cout<< hex << uppercase<<int(data[i])<<"";
-        if((i+1) % 10 == 0) cout <<endl;
-    }
-    cout << dec;
-
+    //vector<unsigned char> data(istreambuf_iterator<char>(fileStream), {});
+    // // this views the data in the terminal right now!!!!!!!!
+    // for (size_t i = 0; i < data.size() && i <100; i++)
+    // {
+    //     cout<< hex << uppercase<<int(data[i])<<"";
+    //     if((i+1) % 10 == 0) cout <<endl;
+    // }
+    // cout << dec;
+    
   
-
-    
+    delete header;
     return 0;
 }
