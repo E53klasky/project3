@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/adios/project3/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/image.dir/all
+all: CMakeFiles/wowser.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/image.dir/clean
+clean: CMakeFiles/wowser.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/image.dir
+# Target rules for target CMakeFiles/wowser.dir
 
 # All Build rule for target.
-CMakeFiles/image.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/image.dir/build.make CMakeFiles/image.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/image.dir/build.make CMakeFiles/image.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/adios/project3/build/CMakeFiles --progress-num=1,2,3 "Built target image"
-.PHONY : CMakeFiles/image.dir/all
+CMakeFiles/wowser.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/adios/project3/build/CMakeFiles --progress-num=1,2 "Built target wowser"
+.PHONY : CMakeFiles/wowser.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/image.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/adios/project3/build/CMakeFiles 3
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/image.dir/all
+CMakeFiles/wowser.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/adios/project3/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/wowser.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/adios/project3/build/CMakeFiles 0
-.PHONY : CMakeFiles/image.dir/rule
+.PHONY : CMakeFiles/wowser.dir/rule
 
 # Convenience name for target.
-image: CMakeFiles/image.dir/rule
-.PHONY : image
+wowser: CMakeFiles/wowser.dir/rule
+.PHONY : wowser
 
 # clean rule for target.
-CMakeFiles/image.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/image.dir/build.make CMakeFiles/image.dir/clean
-.PHONY : CMakeFiles/image.dir/clean
+CMakeFiles/wowser.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/clean
+.PHONY : CMakeFiles/wowser.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

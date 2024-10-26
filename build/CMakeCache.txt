@@ -224,6 +224,15 @@ image_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 image_SOURCE_DIR:STATIC=/home/adios/project3
 
+//Value Computed by CMake
+wowzer_BINARY_DIR:STATIC=/home/adios/project3/build
+
+//Value Computed by CMake
+wowzer_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+wowzer_SOURCE_DIR:STATIC=/home/adios/project3
+
 
 ########################
 # INTERNAL cache entries

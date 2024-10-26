@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/image.dir/Header.cpp.o"
-  "CMakeFiles/image.dir/Header.cpp.o.d"
   "CMakeFiles/image.dir/image.cpp.o"
   "CMakeFiles/image.dir/image.cpp.o.d"
   "image"

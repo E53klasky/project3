@@ -4,6 +4,7 @@
 #include <vector>
 using namespace std;
 
+// I will make a struct for pixel later
 class image
 {
 public:
@@ -23,18 +24,23 @@ public:
 };
 
 
-
+// readers and writers
 void TGAReader(string fileName);
 void TGAWriter(string outPutFile);
 
+// conversion tools
 unsigned int charToInt(unsigned char ltr);
 unsigned char IntToChar(unsigned int num);
 
+
+// to get an int
 void setInt();
 
-void printHead(const Header& header);
+// geters and seters for the header
+Header getHeader();
 void setHeader(Header &header);
 
+// need to add things with pixels
 private:
     Header header;
 };

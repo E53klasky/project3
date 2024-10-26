@@ -117,48 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named image
+# Target rules for targets named wowser
 
 # Build rule for target.
-image: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 image
-.PHONY : image
+wowser: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 wowser
+.PHONY : wowser
 
 # fast build rule for target.
-image/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/image.dir/build.make CMakeFiles/image.dir/build
-.PHONY : image/fast
-
-Header.o: Header.cpp.o
-.PHONY : Header.o
-
-# target to build an object file
-Header.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/image.dir/build.make CMakeFiles/image.dir/Header.cpp.o
-.PHONY : Header.cpp.o
-
-Header.i: Header.cpp.i
-.PHONY : Header.i
-
-# target to preprocess a source file
-Header.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/image.dir/build.make CMakeFiles/image.dir/Header.cpp.i
-.PHONY : Header.cpp.i
-
-Header.s: Header.cpp.s
-.PHONY : Header.s
-
-# target to generate assembly for a file
-Header.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/image.dir/build.make CMakeFiles/image.dir/Header.cpp.s
-.PHONY : Header.cpp.s
+wowser/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/build
+.PHONY : wowser/fast
 
 image.o: image.cpp.o
 .PHONY : image.o
 
 # target to build an object file
 image.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/image.dir/build.make CMakeFiles/image.dir/image.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/image.cpp.o
 .PHONY : image.cpp.o
 
 image.i: image.cpp.i
@@ -166,7 +142,7 @@ image.i: image.cpp.i
 
 # target to preprocess a source file
 image.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/image.dir/build.make CMakeFiles/image.dir/image.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/image.cpp.i
 .PHONY : image.cpp.i
 
 image.s: image.cpp.s
@@ -174,7 +150,7 @@ image.s: image.cpp.s
 
 # target to generate assembly for a file
 image.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/image.dir/build.make CMakeFiles/image.dir/image.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/image.cpp.s
 .PHONY : image.cpp.s
 
 # Help Target
@@ -185,10 +161,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... image"
-	@echo "... Header.o"
-	@echo "... Header.i"
-	@echo "... Header.s"
+	@echo "... wowser"
 	@echo "... image.o"
 	@echo "... image.i"
 	@echo "... image.s"

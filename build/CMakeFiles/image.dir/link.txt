@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/image.dir/image.cpp.o CMakeFiles/image.dir/Header.cpp.o -o image
+/usr/bin/c++ CMakeFiles/image.dir/image.cpp.o -o image
