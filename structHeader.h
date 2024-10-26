@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+
 
 struct Header {
     char idLength;
