@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/wowser.dir/image.cpp.o -o wowser
+/usr/bin/c++ CMakeFiles/wowser.dir/main.cpp.o CMakeFiles/wowser.dir/image.cpp.o -o wowser

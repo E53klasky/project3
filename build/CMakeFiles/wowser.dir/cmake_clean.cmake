@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/wowser.dir/image.cpp.o"
   "CMakeFiles/wowser.dir/image.cpp.o.d"
+  "CMakeFiles/wowser.dir/main.cpp.o"
+  "CMakeFiles/wowser.dir/main.cpp.o.d"
   "wowser"
   "wowser.pdb"
 )

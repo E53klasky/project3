@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/adios/project3/image.cpp" "CMakeFiles/wowser.dir/image.cpp.o" "gcc" "CMakeFiles/wowser.dir/image.cpp.o.d"
+  "/home/adios/project3/main.cpp" "CMakeFiles/wowser.dir/main.cpp.o" "gcc" "CMakeFiles/wowser.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
