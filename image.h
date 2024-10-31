@@ -23,7 +23,7 @@ public:
         char imageDescriptor;
     };
 
-    // add a desctutor 
+    // add a desctutor for pixels
 
 
     unsigned int red , blue , green;
@@ -36,18 +36,31 @@ public:
     unsigned int charToInt(unsigned char ltr);
     unsigned char IntToChar(unsigned int num);
 
-
-    // to get an int
+    // to get an int of the data
     void setInt();
 
-    // geters and seters for the header
+    // geters and seters for  the header
     Header getHeader();
     void setHeader(Header& header);
+    void printHeader(Header& header);
 
     // need to add things with pixels
 
+    // maniplualtion of functions 
+    void multiply();
+    void add();
+    void subtract();
+    void flip();
+
+    // destructor here
+    ~image() {
+        delete[] imageData;
+    }
+
+
 
 private:
-    Header header;
+    unsigned char* imageData;
+    Header* header;
     char* pixels;
 };
