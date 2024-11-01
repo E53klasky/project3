@@ -26,10 +26,9 @@ public:
     // add a desctutor for pixels
 
 
-    unsigned int red , blue , green;
 
    // readers and writers
-    void TGAReader(string fileName);
+    void TGAReader(const string fileName);
     void TGAWriter(string outPutFile);
 
     // conversion tools
@@ -40,9 +39,9 @@ public:
     void setInt();
 
     // geters and seters for  the header
-    Header getHeader();
+    Header getHeader() const;
     void setHeader(Header& header);
-    void printHeader(Header& header);
+    void printHeader(const Header& header);
 
     // need to add things with pixels
 
@@ -52,9 +51,11 @@ public:
     void subtract();
     void flip();
 
-    // destructor here
+    // destructor 
     ~image() {
         delete[] imageData;
+        delete header;
+        delete[] pixels;
     }
 
 
@@ -63,4 +64,6 @@ private:
     unsigned char* imageData;
     Header* header;
     char* pixels;
+    unsigned int red , blue , green;
+
 };
