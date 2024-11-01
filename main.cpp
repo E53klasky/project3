@@ -8,9 +8,13 @@ using namespace std;
 int main()
 {
     string fileName = "../input/circles.tga";
-    // image myImage;
-    // myImage.TGAReader(fileName);
-    // myImage.getHeader();
+    image* myImage = new image;
 
+    myImage->TGAReader(fileName);
+    image::Header header = myImage->getHeader();
+    myImage->printHeader(header);
+
+    delete myImage;
+    myImage = nullptr;
     return 0;
 }
