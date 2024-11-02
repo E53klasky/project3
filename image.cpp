@@ -1,17 +1,10 @@
 #include <iostream> 
 #include <vector>
 #include <string>
-#include <cstring>
 #include <fstream>
 #include "image.h"
+#include <algorithm> 
 using namespace std;
-
-// image::~image()
-// {
-//     delete[] imageData;
-//     delete header;
-//     delete[] pixels;
-// }
 
 
 // When you WRITE IT OVER RIGHTS THE FILES SETTING IT TO 0 !!!!!!!!!!!!!!
@@ -41,23 +34,23 @@ void image::TGAReader(const string fileName) {
     fileStream.read(&header->bitsPerPixel , sizeof(header->bitsPerPixel));
     fileStream.read(&header->imageDescriptor , sizeof(header->imageDescriptor));
 
+    // pixels
     fileStream.seekg(18 , ios::beg);
 
-    this->pixels = new char[header->height * header->width];
+    this->pixels = new char[header->height * header->width * 3];
 
-    fileStream.read(this->pixels , header->height * header->width);
+    // Read pixel data
+    fileStream.read(this->pixels , header->height * header->width * 3);
+
+    // prints out the image for testing
+    // for (int i = 0; i < 1000; ++i) {
+    //     unsigned char red = pixels[i * 3];
+    //     unsigned char green = pixels[i * 3 + 1];
+    //     unsigned char blue = pixels[i * 3 + 2];
+    //     cout << "Pixel " << i << ": R=" << (int)red << " G=" << (int)green << " B=" << (int)blue << endl;
+    // }
 
     fileStream.close();
-
-    // for testing
-    cout << "This is the width " << (short)header->width << endl;
-    cout << "This is the hieght " << (short)header->height << endl;
-
-
-//     delete header;
-//    // delete[] pixels;
-    // header = nullptr;
-    // pixels = nullptr;
 
 }
 
@@ -149,20 +142,40 @@ void image::multiply()
     cout << "NOT DONE";
 }
 
-void image::add()
-{
-    cout << "NOT DONE";
+void image::add(int scalar , string color)
+{ // increases red, green, or blue based off what you want
+    size_t numPixels = header->width * header->height;
+    for (size_t i = 0; i < numPixels; ++i) {
+        if (color == "red") {
+            pixels[i * 3] = min(255 , max(0 , pixels[i * 3] + scalar));
+        }
+        else if (color == "green") {
+            pixels[i * 3 + 1] = min(255 , max(0 , pixels[i * 3 + 1] + scalar));
+        }
+        else if (color == "blue") {
+            pixels[i * 3 + 2] = min(255 , max(0 , pixels[i * 3 + 2] + scalar));
+        }
+    }
+
 }
 
-void image::subtract()
-{
-    cout << "NOT DONE";
+void image::subtract(const image& diffImage) {
+    if (header->width != diffImage.header->width || header->height != diffImage.header->height) {
+        throw invalid_argument("This doesn't work");
+    }
+
+    size_t numPixels = header->width * header->height * 3; // Multiply by 3 to account for RGB components
+    for (size_t i = 0; i < numPixels; ++i) {
+        pixels[i] = max(0 , pixels[i] - diffImage.pixels[i]);
+    }
 }
 
 void image::flip()
 {
     cout << "NOT DONE";
 }
+
+
 
 
 

@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 // I will make a struct for pixel later
@@ -47,9 +48,12 @@ public:
 
     // maniplualtion of functions 
     void multiply();
-    void add();
-    void subtract();
+    void add(int scalar , string color);
+    void subtract(const image &diffImage);
     void flip();
+
+    // scaling colors
+
 
     // destructor 
     ~image() {
