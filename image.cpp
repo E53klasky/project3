@@ -179,18 +179,18 @@ void image::setHeader(Header& header)
 
 void image::printHeader(const Header& header)
 {
-    cout << "The ID Length is: " << header.idLength << endl;
-    cout << "The Color Map Type is: " << header.colorMapDepth << endl;
-    cout << "The Data Type Code is: " << header.dataTypeCode << endl;
-    cout << "The Color Map Origin is: " << header.colorMapOrigin << endl;
-    cout << "The Color Map Length is: " << header.colorMapLength << endl;
-    cout << "The Color Map Depth is: " << header.colorMapDepth << endl;
-    cout << "The X-Origin is: " << header.xOrigin << endl;
-    cout << "The Y-Origin is: " << header.yOrigin << endl;
+    cout << "The ID Length is: " << (char)header.idLength << endl;
+    cout << "The Color Map Type is: " << (char)header.colorMapDepth << endl;
+    cout << "The Data Type Code is: " << (char)header.dataTypeCode << endl;
+    cout << "The Color Map Origin is: " << (short)header.colorMapOrigin << endl;
+    cout << "The Color Map Length is: " << (short)header.colorMapLength << endl;
+    cout << "The Color Map Depth is: " << (char)header.colorMapDepth << endl;
+    cout << "The X-Origin is: " << (short)header.xOrigin << endl;
+    cout << "The Y-Origin is: " << (short)header.yOrigin << endl;
     cout << "The Width is: " << (short)header.width << endl;
     cout << "The Height is: " << (short)header.height << endl;
-    cout << "The Bits Per Pixel is: " << header.bitsPerPixel << endl;
-    cout << "The Image Descriptor is: " << header.imageDescriptor << endl;
+    cout << "The Bits Per Pixel is: " << (char)header.bitsPerPixel << endl;
+    cout << "The Image Descriptor is: " << (char)header.imageDescriptor << endl;
 }
 
 
@@ -315,37 +315,67 @@ void image::rotate180()
 
 }
 
+void image::printThatImage()
+{
+    // probaly a num ptr if it doesn't work
+    if (!header) {
+        cerr << "Header not initialized!????" << endl;
+        return;
+    }
+
+    int allPixles = header->width * header->height * 3;
+    for (int i = 0; i < 100; i++) {
+        unsigned char red = pixels[i * 3];
+        unsigned char green = pixels[i * 3 + 1];
+        unsigned char blue = pixels[i * 3 + 2];
+        cout << "Pixel " << i << ": R=" << (int)red << " G=" << (int)green << " B=" << (int)blue << endl;
+    }
+
+}
+
+
 
 void image::carbonCopies(const image& diffImage)
 {
-
     image::Header diffHeader = diffImage.getHeader();
     image::Header thisHeader = this->getHeader();
-
-    int allPixles = diffHeader.width * diffHeader.height * 3;
 
     if (thisHeader.width != diffHeader.width || thisHeader.height != diffHeader.height) {
         throw invalid_argument("ERROR!!!!!! This doesn't work OH NO!!!!!!!");
     }
 
+    size_t numPixels = thisHeader.width * thisHeader.height;
     long long int tester = 0;
+
     try
     {
-        for (size_t i = 0; i < allPixles; i++)
-        {
-            // if (/* condition */)
-            // {
-            //     /* code */
-            // }
+        for (size_t i = 0; i < numPixels; i++) {
+            bool same = true;
+            for (int j = 0; j < 3; j++)
+            {
+                if (pixels[i * 3 + j] != diffImage.pixels[i * 3 + j])
+                {
+                    same = false;
+                    break;
+                }
+            }
+
+            if (same) {
+                cout << "Pixel " << i << " is the same in both images." << endl;
+            }
+            else {
+                cout << "Pixel " << i << " is different in the images." << endl;
+            }
 
             tester++;
         }
     }
     catch (const std::exception& e)
     {
-        std::cerr << e.what() << "NO!! at: " << tester << "NOO!!!!! \n";
+        std::cerr << e.what() << " NO!! at: " << tester << " NOO!!!!! \n";
     }
 
     cout << "done testing\n";
 }
+
 
