@@ -48,10 +48,13 @@ public:
     void subtract(const image& diffImage);
     void rotate180();
 
+    void overlay(const image& diffImage);
+
     // scaling colors
 
 
     // TESTING
+    void printThatImage();
     void carbonCopies(const image& diffImage);
 
        // destructor 

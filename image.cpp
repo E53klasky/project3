@@ -315,6 +315,30 @@ void image::rotate180()
 
 }
 
+
+void image::overlay(const image& diffImage)
+{
+
+    image::Header diffHeader = diffImage.getHeader();
+    image::Header thisHeader = this->getHeader();
+
+
+    if (thisHeader.width != diffHeader.width || thisHeader.height != diffHeader.height) {
+        throw invalid_argument("ERROR!!!!!! This doesn't work OH NO!!!!!!!");
+    }
+    size_t numPixels = thisHeader.width * thisHeader.height;
+    for (size_t i = 0; i < numPixels; i++)
+    {
+        pixels[i] = min(pixels[i] + diffImage.pixels[i] , 255);
+
+    }
+
+    cout << "DONE overlaying \n";
+
+}
+
+// need screen and combine
+
 void image::printThatImage()
 {
     // probaly a num ptr if it doesn't work
@@ -349,7 +373,8 @@ void image::carbonCopies(const image& diffImage)
 
     try
     {
-        for (size_t i = 0; i < numPixels; i++) {
+        for (size_t i = 0; i < numPixels; i++)
+        {
             bool same = true;
             for (int j = 0; j < 3; j++)
             {
