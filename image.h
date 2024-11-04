@@ -32,13 +32,6 @@ public:
     void TGAReader(const string fileName);
     void TGAWriter(string outPutFile);
 
-    // conversion tools
-    unsigned int charToInt(unsigned char ltr);
-    unsigned char IntToChar(unsigned int num);
-
-    // to get an int of the data
-    void setInt();
-
     // geters and seters for  the header
     Header getHeader() const;
     void setHeader(Header& header);
@@ -47,15 +40,21 @@ public:
     // need to add things with pixels
 
     // maniplualtion of functions 
-    void multiply();
-    void add(int scalar , string color);
-    void subtract(const image &diffImage);
-    void flip();
+
+
+    void multiply(const image& diffImage);
+    void add(int num , const string& color);
+    void scaleImageColor(int scalar , const string color);
+    void subtract(const image& diffImage);
+    void rotate180();
 
     // scaling colors
 
 
-    // destructor 
+    // TESTING
+    void carbonCopies(const image& diffImage);
+
+       // destructor 
     ~image() {
         delete[] imageData;
         delete header;
@@ -68,6 +67,6 @@ private:
     unsigned char* imageData;
     Header* header;
     char* pixels;
-    unsigned int red , blue , green;
+
 
 };
