@@ -37,20 +37,21 @@ public:
     void setHeader(Header& header);
     void printHeader(const Header& header);
 
-    // need to add things with pixels
+
 
     // maniplualtion of functions 
-
-
     void multiply(const image& diffImage);
     void add(int num , const string& color);
     void scaleImageColor(int scalar , const string color);
     void subtract(const image& diffImage);
     void rotate180();
-
     void overlay(const image& diffImage);
+    void screen(const image& diffImage);
+    void combineThree(const image& green, const image& blue);
 
-    // scaling colors
+
+    // extra credit
+   // combinefour(); 
 
 
     // TESTING
@@ -63,6 +64,17 @@ public:
         delete header;
         delete[] pixels;
     }
+
+    // copy constuctor
+    // image(const image& diffImage);
+    // // {
+
+    // // }
+
+    // // image operator = (const image& diffImage);
+    // // {
+    // //     image copy = image()   
+    // // }
 
 
 

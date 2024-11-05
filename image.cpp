@@ -64,7 +64,7 @@ you will have to perform are listed below, under the heading Tasks
 
 
 // When you WRITE IT OVER RIGHTS THE FILES SETTING IT TO 0 !!!!!!!!!!!!!!
-// READING AND WRIGHTING
+// --------READING AND WRIGHTING-------------------------------------
 void image::TGAReader(const string fileName) {
 
     fstream fileStream(fileName , ios::in | ios::binary);
@@ -151,7 +151,7 @@ void image::TGAWriter(string outPutFile)
 
 
 
-// Header things now !!!!!!!!!!!!!!!!!!!!!
+// ------------- Header ----------------------------
 
 
 
@@ -195,12 +195,7 @@ void image::printHeader(const Header& header)
 
 
 
-//pixel manipulation !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-// IDK IF I NEED 
-
-
+//------------------------pixel manipulation ---------------------------
 
 void image::multiply(const image& diffImage)
 {
@@ -312,7 +307,6 @@ void image::rotate180()
     // this checks for core dumps
     cout << " rotating done \n";
 
-
 }
 
 
@@ -357,7 +351,31 @@ void image::screen(const image& diffImage)
     cout << "DONE WITH SCREENING\n";
 }
 
+void image::combineThree(const image& green , const image& blue)
+{
+    image::Header redHeader = this->getHeader();
+    image::Header greenHeader = green.getHeader();
+    image::Header blueHeader = blue.getHeader();
 
+    if (redHeader.width != greenHeader.width || redHeader.height != greenHeader.height ||
+        redHeader.width != blueHeader.width || redHeader.height != blueHeader.height) {
+        throw std::invalid_argument("ERROR: Images do not have the same diminestions");
+    }
+    size_t numPixels = redHeader.width * redHeader.height;
+    for (size_t i = 0; i < numPixels; i++)
+    {
+        pixels[i * 3 + 1] = green.pixels[i * 3 + 1];
+        pixels[i * 3 + 2] = blue.pixels[i * 3 + 2];
+    }
+
+
+    cout << "DONE WITH COMBINING \n";
+
+}
+
+
+
+// -----------------------testing now-----------------------------
 void image::printThatImage()
 {
     // probaly a num ptr if it doesn't work
