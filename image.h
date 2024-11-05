@@ -47,7 +47,8 @@ public:
     void rotate180();
     void overlay(const image& diffImage);
     void screen(const image& diffImage);
-    void combineThree(const image& green, const image& blue);
+    void combineThree(const image& green , const image& blue);
+    void onlyColor(const string& color);
 
 
     // extra credit
@@ -64,17 +65,6 @@ public:
         delete header;
         delete[] pixels;
     }
-
-    // copy constuctor
-    // image(const image& diffImage);
-    // // {
-
-    // // }
-
-    // // image operator = (const image& diffImage);
-    // // {
-    // //     image copy = image()   
-    // // }
 
 
 

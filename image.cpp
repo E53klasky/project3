@@ -7,62 +7,6 @@
 using namespace std;
 
 
-
-
-
-
-
-/*
-
-e files in the examples folder can be used to compare against your output. If you load one of those files
-and compare it against a file you created, ALL of the data elements should be 100% identical. If even one
-component of one pixel is off by the tiniest amount, it is a different image. Every byte/variable of the
-header must match, and every pixel must match, exactly.
-“I opened both images up and they looked the same” is NOT a valid defense if your images do not match
-
-
-
-*/
-
-
-
-
-/*
-
-
-. Use Multiply blending mode to combine “layer1.tga” (top layer) with “pattern1.tga” (bottom).
-2. Use the Subtract blending mode to combine “layer2.tga” (top layer) with “car.tga” (bottom layer).
-This mode subtracts the top layer from the bottom layer.
-3. Use the Multiply blending mode to combine “layer1.tga” with “pattern2.tga”, and store the
-results temporarily. Load the image “text.tga” and, using that as the top layer, combine it with
-the previous results of layer1/pattern2 using the Screen blending mode.
-4. Multiply “layer2.tga” with “circles.tga”, and store it. Load “pattern2.tga” and, using that as the
-top layer, combine it with the previous result using the Subtract blending mode.
-5. Combine “layer1.tga” (as the top layer) with “pattern1.tga” using the Overlay blending mode.
-6. Load “car.tga” and add 200 to the green channel.
-7. Load “car.tga” and scale (multiply) the red channel by 4, and the blue channel by 0. This will
-increase the intensity of any red in the image, while negating any blue it may have.
-8. Load “car.tga” and write each channel to a separate file: the red channel should be “part8_r.tga”,
-the green channel should be “part8_g.tga”, and the blue channel should be “part8_b.tga”
-9. Load “layer_red.tga”, “layer_green.tga” and “layer_blue.tga”, and combine the three files into
-one file. The data from “layer_red.tga” is the red channel of the new image, layer_green is
-green, and layer_blue is blue.
-10. Load “text2.tga”, and rotate it 180 degrees, flipping it upside down. This is easier than you think!
-Try diagramming the data of an image (such as earlier in this document). What would the data
-look like if you flipped it? Now, how to write some code to accomplish that...?
-
-*/
-
-/*
-ou will not be implementing all of those blending modes. For this assignment, you will be implementing
-the Multiply, Subtract, Screen, and Overlay blending modes. In addition, you should be able to modify
-the individual channels by adding a value to them (such as adding 20 to the red channel, or “adding” -20
-to the blue channel), or by scaling them (such as scaling the green channel by 50%). The specific operations
-you will have to perform are listed below, under the heading Tasks
-
-*/
-
-
 // When you WRITE IT OVER RIGHTS THE FILES SETTING IT TO 0 !!!!!!!!!!!!!!
 // --------READING AND WRIGHTING-------------------------------------
 void image::TGAReader(const string fileName) {
@@ -101,8 +45,9 @@ char fits this perfectly). You will need a way to store a lot of them; a medium-
 512x512 contains 262,144 pixels
 
     */
-    fileStream.seekg(18 , ios::beg);
+    //fileStream.seekg(18 , ios::beg);
 
+    // if (eof) is true then you are at the end of the file
     this->pixels = new char[header->height * header->width * 3];
 
     // Read pixel data
@@ -152,8 +97,6 @@ void image::TGAWriter(string outPutFile)
 
 
 // ------------- Header ----------------------------
-
-
 
 
 image::Header image::getHeader() const
@@ -219,22 +162,22 @@ void image::scaleImageColor(int scalar , const string color)
 {
     // CORE DUMPS
     //    size_t numPixels = header->width * header->height * 3;
-
+    // IDK IF THIS WORKS ANYMORE 8 is weird
 
     size_t numPixels = header->width * header->height; // works like this ???????????? why 
 
     for (size_t i = 0; i < numPixels; i++) {
         if (color == "red") {
            // cout << "It works for i = R " << i << endl;
-            pixels[i * 3] = min(255 , max(0 , static_cast<int>(static_cast<unsigned char>(pixels[i * 3])) * scalar));
+            pixels[i * 3] = min(255 , max(0 , static_cast<char>(static_cast<unsigned int>(pixels[i * 3])) * scalar));
         }
         else if (color == "green") {
            // cout << "It works for i = G" << i << endl;
-            pixels[i * 3 + 1] = min(255 , max(0 , static_cast<int>(static_cast<unsigned char>(pixels[i * 3 + 1])) * scalar));
+            pixels[i * 3 + 1] = min(255 , max(0 , static_cast<char>(static_cast<unsigned int>(pixels[i * 3 + 1])) * scalar));
         }
         else if (color == "blue") {
            // cout << "It works for i = B " << i << endl;
-            pixels[i * 3 + 2] = min(255 , max(0 , static_cast<int>(static_cast<unsigned char>(pixels[i * 3 + 2])) * scalar));
+            pixels[i * 3 + 2] = min(255 , max(0 , static_cast<char>(static_cast<unsigned int>(pixels[i * 3 + 2])) * scalar));
         }
     }
     cout << "done scalling \n";
@@ -257,15 +200,16 @@ void image::add(int num , const string& color)
     for (size_t i = 0; i < numPixels; i++) {
         if (color == "red") {
             //cout << "It works for i = R " << i << endl;
-            pixels[i * 3] = min(255 , max(0 , static_cast<int>(static_cast<unsigned char>(pixels[i * 3])) + num));
+
+            pixels[i * 3] = min(255 , max(0 , pixels[i * 3] + num));
         }
         else if (color == "green") {
             //cout << "It works for i = G" << i << endl;
-            pixels[i * 3 + 1] = min(255 , max(0 , static_cast<int>(static_cast<unsigned char>(pixels[i * 3 + 1])) + num));
+            pixels[i * 3 + 1] = min(255 , max(0 , pixels[i * 3 + 1] + num));
         }
         else if (color == "blue") {
             //cout << "It works for i = B " << i << endl;
-            pixels[i * 3 + 2] = min(255 , max(0 , static_cast<int>(static_cast<unsigned char>(pixels[i * 3 + 2])) + num));
+            pixels[i * 3 + 2] = min(255 , max(0 , pixels[i * 3 + 2] + num));
         }
     }
 
@@ -373,6 +317,31 @@ void image::combineThree(const image& green , const image& blue)
 
 }
 
+void image::onlyColor(const std::string& color)
+{
+    size_t numPixels = header->width * header->height;
+    for (size_t i = 0; i < numPixels; i += 1)
+    {
+        if (color == "red") {
+
+            pixels[i * 3 + 1] = 0;
+            pixels[i * 3 + 2] = 0;
+        }
+        else if (color == "green") {
+
+            pixels[i * 3] = 0;
+            pixels[i * 3 + 2] = 0;
+        }
+        else if (color == "blue") {
+
+            pixels[i * 3] = 0;
+            pixels[i * 3 + 1] = 0;
+        }
+    }
+
+    std::cout << "DONE with only color\n";
+}
+
 
 
 // -----------------------testing now-----------------------------
@@ -439,5 +408,28 @@ void image::carbonCopies(const image& diffImage)
 
     cout << "done testing\n";
 }
+
+
+
+// -------------copy constructor --------------------------
+
+ // copy constuctor
+    // image(const image& diffImage);
+    // {
+
+
+    //     newImage = dif
+    // }
+
+
+// SOMETHING LIKE THIS
+// image operator = (const image& diffImage);
+// {
+//     this->header = diffImage.header;
+//     this->pixels = diffImage.pixels;
+//     return this*;
+// }
+
+
 
 
