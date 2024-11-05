@@ -338,6 +338,25 @@ void image::overlay(const image& diffImage)
 }
 
 // need screen and combine
+void image::screen(const image& diffImage)
+{
+    image::Header diffHeader = diffImage.getHeader();
+    image::Header thisHeader = this->getHeader();
+
+
+    if (thisHeader.width != diffHeader.width || thisHeader.height != diffHeader.height) {
+        throw invalid_argument("ERROR!!!!!! This doesn't work OH NO!!!!!!!");
+    }
+    size_t numPixels = thisHeader.width * thisHeader.height;
+
+    for (size_t i = 0; i < numPixels; i++)
+    {
+        pixels[i] = 255 - (((255 - pixels[i]) * (255 - diffImage.pixels[i])) / 255);
+    }
+
+    cout << "DONE WITH SCREENING\n";
+}
+
 
 void image::printThatImage()
 {
