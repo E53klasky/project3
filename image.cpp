@@ -154,7 +154,7 @@ unsigned char image::convertIntToChar(unsigned int num)
 
 //------------------------pixel manipulation ---------------------------
 
-// TODO: bug with this code
+// works with task2!!!!!!!!!!!!!!!
 void image::multiply(const image& diffImage)
 {
     if (header->width != diffImage.header->width || header->height != diffImage.header->height) {
@@ -320,7 +320,8 @@ void image::screen(const image& diffImage)
 
     for (size_t i = 0; i < numPixels; i++)
     {
-        pixels[i] = 255 - (((255 - pixels[i]) * (255 - diffImage.pixels[i])) / 255);
+
+        pixels[i] = static_cast<unsigned char>(0.5 + (255 - ((static_cast<float>(255 - convertCharToInt(pixels[i])) * static_cast<float>(255 - convertCharToInt(diffImage.pixels[i]))) / 255)));
     }
 
     cout << "DONE WITH SCREENING\n";
@@ -420,6 +421,8 @@ void image::carbonCopies(const image& diffImage)
             {
                 if (pixels[i * 3 + j] != diffImage.pixels[i * 3 + j])
                 {
+                    cout << static_cast<int>(pixels[i * 3 + j]) << endl;
+                    cout << static_cast<int>(diffImage.pixels[i * 3 + j]) << endl;
                     same = false;
                     break;
                 }
@@ -431,6 +434,8 @@ void image::carbonCopies(const image& diffImage)
             }
             else {
                 cout << "Pixel " << i << " is different in the images." << endl;
+                cout << "Example pixle value is " << convertCharToInt(diffImage.pixels[i]) << endl;
+                cout << "Your pixle value is " << convertCharToInt(pixels[i]) << endl;
                 break;
             }
 

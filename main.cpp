@@ -58,14 +58,18 @@ void taskTwo(image& layerTwo , image& car)
 void taskThree(image& layerOne , image& patternTwo , image& text)
 {
   // later problem make sure to have layer1 unchanged!!!!!!!!!!!!!!!!!!
-  layerOne.TGAReader("i../nput/layer1.tga");
+  layerOne.TGAReader("../input/layer1.tga");
   patternTwo.TGAReader("../input/pattern2.tga");
   text.TGAReader("../input/text.tga");
   // 
   layerOne.multiply(patternTwo);
-  text.screen(layerOne);
+  layerOne.screen(text);
 
-  text.TGAWriter("../output/part3.tga");
+  layerOne.TGAWriter("../output/part3.tga");
+  image* example3 = new image;
+  example3->TGAReader("../examples/EXAMPLE_part3.tga");
+  example3->carbonCopies(layerOne);
+
 
 }
 
@@ -172,22 +176,27 @@ int main()
   image* patternOne = new image;
   image* layerTwo = new image;
   image* car = new image;
+  image* layerOne2 = new image;
+  image* patternTwo = new image;
+  image* text = new image;
 
 
   // must make all pointers at the top then call methods
-
-  taskOne(*layerOne , *patternOne);
-  taskTwo(*layerTwo , *car);
+  //taskOne(*layerOne , *patternOne);
+  //taskTwo(*layerTwo , *car);
+  taskThree(*layerOne2 , *patternTwo , *text); // on three
 
   // THERE IS SOMETHING WRONG WITH MY DECSTRUCTOR IT IS DOING SOMETHING WEIRD
-  // delete layerOne;
-  // delete patternOne;
-  // delete layerTwo;
-  // delete car;
+  delete layerOne;
+  delete patternOne;
+  delete layerTwo;
+  delete car;
+  delete layerOne2;
   layerOne = nullptr;
   patternOne = nullptr;
   layerTwo = nullptr;
   car = nullptr;
+  layerOne2 = nullptr;
   cout << "code finished \n";
 
 
