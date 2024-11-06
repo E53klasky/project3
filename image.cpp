@@ -191,15 +191,18 @@ void image::scaleImageColor(int scalar , const string color)
     for (size_t i = 0; i < numPixels; i++) {
         if (color == "blue") {
            // cout << "It works for i = B " << i << endl;
-            pixels[i * 3] = min(255 , max(0 , static_cast<char>(static_cast<unsigned int>(pixels[i * 3])) * scalar));
+            unsigned int blue = min(255 , max(0 , (int)convertCharToInt(pixels[i * 3]) * (int)scalar));
+            pixels[i * 3] = convertIntToChar(blue);
         }
         else if (color == "green") {
            // cout << "It works for i = G" << i << endl;
-            pixels[i * 3 + 1] = min(255 , max(0 , static_cast<char>(static_cast<unsigned int>(pixels[i * 3 + 1])) * scalar));
+            unsigned int green = min(255 , max(0 , (int)convertCharToInt(pixels[i * 3 + 1]) * (int)scalar));
+            pixels[i * 3 + 1] = convertIntToChar(green);
         }
         else if (color == "red") {
            // cout << "It works for i = R " << i << endl;
-            pixels[i * 3 + 2] = min(255 , max(0 , static_cast<char>(static_cast<unsigned int>(pixels[i * 3 + 2])) * scalar));
+            unsigned int red = min(255 , max(0 , (int)convertCharToInt(pixels[i * 3 + 2]) * (int)scalar));
+            pixels[i * 3 + 2] = convertIntToChar(red);
         }
     }
     cout << "done scalling \n";
@@ -365,22 +368,22 @@ void image::combineThree(const image& green , const image& blue)
 void image::onlyColor(const std::string& color)
 {
     size_t numPixels = header->width * header->height;
-    for (size_t i = 0; i < numPixels; i += 1)
+    for (size_t i = 0; i < numPixels; i++)
     {
-        if (color == "red") {
+        if (color == "blue") {
 
-            pixels[i * 3 + 1] = 0;
-            pixels[i * 3 + 2] = 0;
+            pixels[i * 3 + 1] = pixels[i * 3];
+            pixels[i * 3 + 2] = pixels[i * 3];
         }
         else if (color == "green") {
 
-            pixels[i * 3] = 0;
-            pixels[i * 3 + 2] = 0;
+            pixels[i * 3] = pixels[i * 3 + 1];
+            pixels[i * 3 + 2] = pixels[i * 3 + 1];
         }
-        else if (color == "blue") {
+        else if (color == "red") {
 
-            pixels[i * 3] = 0;
-            pixels[i * 3 + 1] = 0;
+            pixels[i * 3] = pixels[i * 3 + 2];
+            pixels[i * 3 + 1] = pixels[i * 3 + 2];
         }
     }
 

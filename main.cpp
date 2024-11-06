@@ -119,35 +119,52 @@ void taskSix(image& car)
   // example6->carbonCopies(car);
 }
 
-
+// done
 void taskSeven(image& car)
 {
-  car.TGAReader("input/car.tga");
+  car.TGAReader("../input/car.tga");
   int scaleOne = 4;
   int scaleTwo = 0;
   car.scaleImageColor(scaleOne , "red");
   car.scaleImageColor(scaleTwo , "blue");
   car.TGAWriter("../output/part7.tga");
+
+  // image* example7 = new image;
+  // example7->TGAReader("../examples/EXAMPLE_part7.tga");
+  // example7->carbonCopies(car);
 }
 
 
-// need to think about this??????
+// done DO NOT UNCOMMENT ALL THREE FOR TESTING AT ONCE YOU WILL GET A CORPUTED LINKED LIST???????
 void taskEight(image& carOne , image& carTwo , image& carThree)
 {
-  carOne.TGAReader("input/car.tga");
-  carTwo.TGAReader("input/car.tga");
-  carThree.TGAReader("input/car.tga");
+  carOne.TGAReader("../input/car.tga");
+  carTwo.TGAReader("../input/car.tga");
+  carThree.TGAReader("../input/car.tga");
 
   carOne.onlyColor("red");
   carTwo.onlyColor("green");
   carThree.onlyColor("blue");
 
 
-  carOne.TGAWriter("output/“part8_r.tga");
-  carTwo.TGAWriter("output/“part8_g.tga");
-  carThree.TGAWriter("output/“part8_b.tga");
+  carOne.TGAWriter("../output/part8_r.tga");
+  carTwo.TGAWriter("../output/part8_g.tga");
+  carThree.TGAWriter("../output/part8_b.tga");
+
+  // image* example8r = new image;
+  // example8r->TGAReader("../examples/EXAMPLE_part8_r.tga");
+  // example8r->carbonCopies(carOne);
+
+  // image* example8g = new image;
+  // example8g->TGAReader("../examples/EXAMPLE_part8_g.tga");
+  // example8g->carbonCopies(carTwo);
+
+  // image* example8b = new image;
+  // example8b->TGAReader("../examples/EXAMPLE_part8_b.tga");
+  // example8b->carbonCopies(carThree);
 
 }
+
 
 void taskNine(image& red , image& green , image& blue)
 {
@@ -155,7 +172,7 @@ void taskNine(image& red , image& green , image& blue)
   green.TGAReader("input/layer_green.tga");
   blue.TGAReader("input/layer_blue.tga");
   red.combineThree(green , blue);
-  red.TGAWriter("output/task9.tga");
+  red.TGAWriter("../output/task9.tga");
 }
 
 
@@ -165,7 +182,7 @@ void taskTen(image& textTwo)
 {
   textTwo.TGAReader("input/text2.tga");
   textTwo.rotate180();
-  textTwo.TGAWriter("output/task10");
+  textTwo.TGAWriter("../output/task10");
 
 }
 
@@ -185,7 +202,7 @@ int main()
  // 2. debug them
  // 3. make bouns test it and free memory
  // 4. see a TA before submiting it if you can 
-
+  // pointers being stored on the heap yeah a lot ik 
   image* layerOne = new image;
   image* patternOne = new image;
   image* layerTwo = new image;
@@ -199,14 +216,19 @@ int main()
   image* layerOne3 = new image;
   image* patternOne2 = new image;
   image* car1 = new image;
+  image* car2 = new image;
+  image* carOne = new image;
+  image* carTwo = new image;
+  image* carThree = new image;
 
-
-  //taskOne(*layerOne , *patternOne);
-  //taskTwo(*layerTwo , *car);
-  //taskThree(*layerOne2 , *patternTwo , *text);
-  //taskFour(*layerTwo2 , *circles , *patternTwo2); 
-  //taskFive(*layerOne3 , *patternOne2); // skip for now don't know how to do !!!!!!!!!
-  taskSix(*car1);
+  // taskOne(*layerOne , *patternOne);
+  // taskTwo(*layerTwo , *car);
+  // taskThree(*layerOne2 , *patternTwo , *text);
+  // taskFour(*layerTwo2 , *circles , *patternTwo2);
+  // // //taskFive(*layerOne3 , *patternOne2); // skip for now don't know how to do !!!!!!!!!
+  // taskSix(*car1);
+  // taskSeven(*car2);
+  taskEight(*carOne , *carTwo , *carThree);
 
   // THERE IS SOMETHING WRONG WITH MY DECSTRUCTOR IT IS DOING SOMETHING WEIRD
   delete layerOne;
@@ -221,6 +243,10 @@ int main()
   delete layerOne3;
   delete patternOne2;
   delete car1;
+  delete car2;
+  delete carOne;
+  delete carTwo;
+  delete carThree;
 
   layerOne = nullptr;
   patternOne = nullptr;
@@ -234,9 +260,12 @@ int main()
   layerOne3 = nullptr;
   patternOne2 = nullptr;
   car1 = nullptr;
+  car2 = nullptr;
+  carOne = nullptr;
+  carTwo = nullptr;
+  carThree = nullptr;
 
   cout << "code finished \n";
-
 
 
   return 0;
