@@ -5,17 +5,20 @@
 #include <fstream>
 using namespace std;
 
-/// I THINK I SHOULD DELET ALL THEM AFTER EACH TASK AND SET TO NULL POINTERS 
 
-// multiply two images
+// ------------ SECOND BETTER CHECKER ---------------
+/*
+adios@ethanlabtop:~/project3/build$ diff -s ../examples/EXAMPLE_part1.tga ../output/part1.tga
+Files ../examples/EXAMPLE_part1.tga and ../output/part1.tga are identical
+adios@ethanlabtop:~/project3/build$ diff -s ../examples/EXAMPLE_part2.tga ../output/part2.tga
+Files ../examples/EXAMPLE_part2.tga and ../output/part2.tga are identical
+adios@ethanlabtop:~/project3/build$ diff -s ../examples/EXAMPLE_part3.tga ../output/part3.tga
+Files ../examples/EXAMPLE_part3.tga and ../output/part3.tga are identical
+adios@ethanlabtop:~/project3/build$ diff -s ../examples/EXAMPLE_part4.tga ../output/part4.tga
+Files ../examples/EXAMPLE_part4.tga and ../output/part4.tga are identical
+*/
 
-
-  // example !!!!!!!!!!!!
-  // string fileName = "../input/car.tga";
-  // image* myImage = new image;
-  // myImage->TGAReader(fileName);
-  // image::Header header = myImage->getHeader();
-
+// done !!!!!!!!!!
 void taskOne(image& layerOne , image& patternOne)
 {
   cout << "task one begin\n";
@@ -29,13 +32,13 @@ void taskOne(image& layerOne , image& patternOne)
   //layerOne changes
   layerOne.TGAWriter("../output/part1.tga");
   // test
-  image* example1 = new image;
-  example1->TGAReader("../examples/EXAMPLE_part1.tga");
-  example1->carbonCopies(layerOne);
+  // image* example1 = new image;
+  // example1->TGAReader("../examples/EXAMPLE_part1.tga");
+  // example1->carbonCopies(layerOne);
 
 }
 
-
+// done !!!!!!!!!!
 void taskTwo(image& layerTwo , image& car)
 {
   cout << "task two begin\n";
@@ -47,14 +50,15 @@ void taskTwo(image& layerTwo , image& car)
 
 // result
   car.TGAWriter("../output/part2.tga");
-  image* example2 = new image;
-  example2->TGAReader("../examples/EXAMPLE_part2.tga");
-  example2->carbonCopies(car);
+
+  // image* example2 = new image;
+  // example2->TGAReader("../examples/EXAMPLE_part2.tga");
+  // example2->carbonCopies(car);
 
 }
 
 
-
+// done !!!!!!!!!!
 void taskThree(image& layerOne , image& patternTwo , image& text)
 {
   // later problem make sure to have layer1 unchanged!!!!!!!!!!!!!!!!!!
@@ -66,14 +70,15 @@ void taskThree(image& layerOne , image& patternTwo , image& text)
   layerOne.screen(text);
 
   layerOne.TGAWriter("../output/part3.tga");
-  image* example3 = new image;
-  example3->TGAReader("../examples/EXAMPLE_part3.tga");
-  example3->carbonCopies(layerOne);
+
+  // image* example3 = new image;
+  // example3->TGAReader("../examples/EXAMPLE_part3.tga");
+  // example3->carbonCopies(layerOne);
 
 
 }
 
-
+// done !!!!!!!!!!
 void taskFour(image& layerTwo , image& circles , image& patternTwo)
 {
   layerTwo.TGAReader("../input/layer2.tga");
@@ -81,13 +86,17 @@ void taskFour(image& layerTwo , image& circles , image& patternTwo)
   patternTwo.TGAReader("../input/pattern2.tga");
 
   layerTwo.multiply(circles);
+  layerTwo.subtract(patternTwo);
+  layerTwo.TGAWriter("../output/part4.tga");
 
-  patternTwo.subtract(layerTwo);
-  patternTwo.TGAWriter("../output/part4.tga");
+  // image* example4 = new image;
+  // example4->TGAReader("../examples/EXAMPLE_part4.tga");
+  // example4->carbonCopies(layerTwo);
+
 
 }
 
-
+// still working on !!!!!!!!!!!
 void taskFive(image& layerOne , image& patterOne)
 {
   layerOne.TGAReader("../input/layer1.tga");
@@ -97,13 +106,17 @@ void taskFive(image& layerOne , image& patterOne)
 
 }
 
-
+// done !!!!!!!!!!
 void taskSix(image& car)
 {
-  car.TGAReader("input/car.tga");
-  int num = 200;
+  car.TGAReader("../input/car.tga");
+  unsigned int num = 200;
   car.add(num , "green");
-  car.TGAWriter("output/part6.tga");
+  car.TGAWriter("../output/part6.tga");
+
+  // image* example6 = new image;
+  // example6->TGAReader("../examples/EXAMPLE_part6.tga");
+  // example6->carbonCopies(car);
 }
 
 
@@ -114,8 +127,9 @@ void taskSeven(image& car)
   int scaleTwo = 0;
   car.scaleImageColor(scaleOne , "red");
   car.scaleImageColor(scaleTwo , "blue");
-  car.TGAWriter("output/part7.tga");
+  car.TGAWriter("../output/part7.tga");
 }
+
 
 // need to think about this??????
 void taskEight(image& carOne , image& carTwo , image& carThree)
@@ -179,12 +193,20 @@ int main()
   image* layerOne2 = new image;
   image* patternTwo = new image;
   image* text = new image;
+  image* layerTwo2 = new image;
+  image* circles = new image;
+  image* patternTwo2 = new image;
+  image* layerOne3 = new image;
+  image* patternOne2 = new image;
+  image* car1 = new image;
 
 
-  // must make all pointers at the top then call methods
   //taskOne(*layerOne , *patternOne);
   //taskTwo(*layerTwo , *car);
-  taskThree(*layerOne2 , *patternTwo , *text); // on three
+  //taskThree(*layerOne2 , *patternTwo , *text);
+  //taskFour(*layerTwo2 , *circles , *patternTwo2); 
+  //taskFive(*layerOne3 , *patternOne2); // skip for now don't know how to do !!!!!!!!!
+  taskSix(*car1);
 
   // THERE IS SOMETHING WRONG WITH MY DECSTRUCTOR IT IS DOING SOMETHING WEIRD
   delete layerOne;
@@ -192,11 +214,27 @@ int main()
   delete layerTwo;
   delete car;
   delete layerOne2;
+  delete text;
+  delete layerTwo2;
+  delete circles;
+  delete patternTwo2;
+  delete layerOne3;
+  delete patternOne2;
+  delete car1;
+
   layerOne = nullptr;
   patternOne = nullptr;
   layerTwo = nullptr;
   car = nullptr;
   layerOne2 = nullptr;
+  text = nullptr;
+  layerTwo2 = nullptr;
+  circles = nullptr;
+  patternTwo2 = nullptr;
+  layerOne3 = nullptr;
+  patternOne2 = nullptr;
+  car1 = nullptr;
+
   cout << "code finished \n";
 
 

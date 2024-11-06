@@ -218,16 +218,18 @@ void image::add(int num , const string& color)
     for (size_t i = 0; i < numPixels; i++) {
         if (color == "blue") {
             //cout << "It works for i = B " << i << endl;
-
-            pixels[i * 3] = min(255 , max(0 , pixels[i * 3] + num));
+            unsigned int blue = min(255 , max(0 , (int)convertCharToInt(pixels[i * 3]) + (int)num));
+            pixels[i * 3] = convertIntToChar(blue);
         }
         else if (color == "green") {
             //cout << "It works for i = G" << i << endl;
-            pixels[i * 3 + 1] = min(255 , max(0 , pixels[i * 3 + 1] + num));
+            unsigned int green = min(255 , max(0 , (int)convertCharToInt(pixels[i * 3 + 1]) + (int)num));
+            pixels[i * 3 + 1] = convertIntToChar(green);
         }
         else if (color == "red") {
             //cout << "It works for i = R " << i << endl;
-            pixels[i * 3 + 2] = min(255 , max(0 , pixels[i * 3 + 2] + num));
+            unsigned int red = min(255 , max(0 , (int)convertCharToInt(pixels[i * 3 + 2]) + (int)num));
+            pixels[i * 3 + 2] = convertIntToChar(red);
         }
     }
 
@@ -284,6 +286,7 @@ void image::rotate180()
 }
 
 
+// this one
 void image::overlay(const image& diffImage)
 {
 
@@ -295,10 +298,17 @@ void image::overlay(const image& diffImage)
         throw invalid_argument("ERROR!!!!!! This doesn't work OH NO!!!!!!!");
     }
 
-    size_t numPixels = thisHeader.width * thisHeader.height;
+    size_t numPixels = thisHeader.width * thisHeader.height * 3;
     for (size_t i = 0; i < numPixels; i++)
     {
-        pixels[i] = min(pixels[i] + diffImage.pixels[i] , 255);
+
+        if (convertIntToChar(convertCharToInt(pixels[i]) + convertCharToInt(diffImage.pixels[i])) > 255) {
+            pixels[i] = 255;
+        }
+
+        else {
+            pixels[i] = convertIntToChar(convertCharToInt(pixels[i]) + convertCharToInt(diffImage.pixels[i]));
+        }
 
     }
 
@@ -430,7 +440,7 @@ void image::carbonCopies(const image& diffImage)
 
             if (same) {
                 // uncomment when testing a task for that saticfation of seeing all correct
-              //  cout << "Pixel " << i << " is the same in both images." << endl;
+                cout << "Pixel " << i << " is the same in both images." << endl;
             }
             else {
                 cout << "Pixel " << i << " is different in the images." << endl;
