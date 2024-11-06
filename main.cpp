@@ -18,6 +18,7 @@ using namespace std;
 
 void taskOne(image& layerOne , image& patternOne)
 {
+  cout << "task one begin\n";
   layerOne.TGAReader("../input/layer1.tga");
   patternOne.TGAReader("../input/pattern1.tga");
 
@@ -28,15 +29,16 @@ void taskOne(image& layerOne , image& patternOne)
   //layerOne changes
   layerOne.TGAWriter("../output/part1.tga");
   // test
-  image* example = new image;
-  example->TGAReader("../examples/EXAMPLE_part1.tga");
-  example->carbonCopies(layerOne);
+  image* example1 = new image;
+  example1->TGAReader("../examples/EXAMPLE_part1.tga");
+  example1->carbonCopies(layerOne);
 
 }
 
 
 void taskTwo(image& layerTwo , image& car)
 {
+  cout << "task two begin\n";
   // what does top layer and buttom layer mean 
   layerTwo.TGAReader("../input/layer2.tga");
   car.TGAReader("../input/car.tga");
@@ -45,9 +47,9 @@ void taskTwo(image& layerTwo , image& car)
 
 // result
   car.TGAWriter("../output/part2.tga");
-  image* example = new image;
-  example->TGAReader("../examples/EXAMPLE_part2.tga");
-  example->carbonCopies(car);
+  image* example2 = new image;
+  example2->TGAReader("../examples/EXAMPLE_part2.tga");
+  example2->carbonCopies(car);
 
 }
 
@@ -168,14 +170,13 @@ int main()
 
   image* layerOne = new image;
   image* patternOne = new image;
-
-
-  //taskOne(*layerOne , *patternOne);
-
-
   image* layerTwo = new image;
   image* car = new image;
 
+
+  // must make all pointers at the top then call methods
+
+  taskOne(*layerOne , *patternOne);
   taskTwo(*layerTwo , *car);
 
   // THERE IS SOMETHING WRONG WITH MY DECSTRUCTOR IT IS DOING SOMETHING WEIRD

@@ -38,31 +38,23 @@ void image::TGAReader(const string fileName) {
 
         // pixels
 
-        /*
-         to store the TGA file? You would need...
-    • The header. 18 bytes worth of data (even if you really only care about 4 bytes – 2 bytes for width,
-    2 for height). You will need all 18 bytes of this header data to properly write a .TGA file.
-    • The pixels. A pixel is 3 values: R, G, and B, and each of those is a number from 0-255 (an unsigned
-    char fits this perfectly). You will need a way to store a lot of them; a medium-sized image that’s
-    512x512 contains 262,144 pixels
-
-        */
-       // fileStream.seekg(18 , ios::beg);
 
         // if (eof) is true then you are at the end of the file
+
     this->pixels = new char[header->height * header->width * 3];
 
-    // Read pixel data
+// Read pixel data
     fileStream.read(this->pixels , header->height * header->width * 3);
 
 
     //prints out the image for testing
-    for (int i = 0; i < 10; i++) {
-        unsigned char blue = pixels[i * 3];
-        unsigned char green = pixels[i * 3 + 1];
-        unsigned char red = pixels[i * 3 + 2];
-        cout << "Pixel " << i << ": B=" << (int)blue << " G=" << (int)green << " R=" << (int)red << endl;
-    }
+    cout << "READING IN\n";
+    // for (int i = 0; i < 10; i++) {
+    //     unsigned char blue = pixels[i * 3];
+    //     unsigned char green = pixels[i * 3 + 1];
+    //     unsigned char red = pixels[i * 3 + 2];
+    //     cout << "Pixel " << i << ": B=" << (int)blue << " G=" << (int)green << " R=" << (int)red << endl;
+    // }
 
     fileStream.close();
 
@@ -92,7 +84,7 @@ void image::TGAWriter(string outPutFile)
 
     fileStream.write(this->pixels , header->height * header->width * 3);
     cout << "Wrote to disk????????????\n";
-
+    cout << "the first 10 pixles: \n";
     for (int i = 0; i < 10; i++) {
         unsigned char blue = pixels[i * 3];
         unsigned char green = pixels[i * 3 + 1];
@@ -172,16 +164,20 @@ void image::multiply(const image& diffImage)
     size_t numPixels = header->width * header->height * 3;
     for (size_t i = 0; i < numPixels; i++)
     {
-        float thisPix = (float)pixels[i] / 255.0f;
-        float diffPix = (float)diffImage.pixels[i] / 255.0f;
+        //cout << "layer1 fisrt pixel: " << static_cast<int> (pixels[i]) << " pattern1 first pixel " << static_cast<int> (diffImage.pixels[i]) << endl;
+        float thisPix = static_cast<float>(convertCharToInt(pixels[i])) / 255.0f;
+        float diffPix = static_cast<float> (convertCharToInt(diffImage.pixels[i])) / 255.0f;
+        //cout << "float val of pix" << thisPix << endl;
+       // cout << "float val of diffpix" << diffPix << endl;
 
         float result = 0.5 + ((thisPix * diffPix) * 255.0f);
-        pixels[i] = static_cast<unsigned char>(result);
+        unsigned int newResult = static_cast<int> (result);
+        pixels[i] = convertIntToChar(newResult);
+
     }
 
     cout << " done multiplying \n";
 }
-
 
 
 // BGR
@@ -246,6 +242,7 @@ void image::subtract(image& diffImage) {
     if (header->width != diffImage.header->width || header->height != diffImage.header->height) {
         throw invalid_argument("ERROR!!!!!! This doesn't work");
     }
+    cout << "start subtracting\n";
 
     size_t numPixels = header->width * header->height * 3;
     for (size_t i = 0; i < numPixels; i++) {
@@ -254,12 +251,12 @@ void image::subtract(image& diffImage) {
         int diffPix = convertCharToInt(diffImage.pixels[i]);
         int test = (myPix - diffPix);
         //cout << "val: " << test << " i: " << i << endl;
-       
+
         int diff = myPix - diffPix;
         int vals = max(0 , diff);
        // cout << "vals: " << vals << " i: " << i << endl;
         pixels[i] = convertIntToChar(vals);
-      
+
     }
 
     // this checks for core dumps
@@ -429,7 +426,8 @@ void image::carbonCopies(const image& diffImage)
             }
 
             if (same) {
-                cout << "Pixel " << i << " is the same in both images." << endl;
+                // uncomment when testing a task for that saticfation of seeing all correct
+              //  cout << "Pixel " << i << " is the same in both images." << endl;
             }
             else {
                 cout << "Pixel " << i << " is different in the images." << endl;
