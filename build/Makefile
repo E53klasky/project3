@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named wowser
+# Target rules for targets named image-processor
 
 # Build rule for target.
-wowser: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 wowser
-.PHONY : wowser
+image-processor: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 image-processor
+.PHONY : image-processor
 
 # fast build rule for target.
-wowser/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/build
-.PHONY : wowser/fast
+image-processor/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/image-processor.dir/build.make CMakeFiles/image-processor.dir/build
+.PHONY : image-processor/fast
 
 image.o: image.cpp.o
 .PHONY : image.o
 
 # target to build an object file
 image.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/image.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/image-processor.dir/build.make CMakeFiles/image-processor.dir/image.cpp.o
 .PHONY : image.cpp.o
 
 image.i: image.cpp.i
@@ -142,7 +142,7 @@ image.i: image.cpp.i
 
 # target to preprocess a source file
 image.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/image.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/image-processor.dir/build.make CMakeFiles/image-processor.dir/image.cpp.i
 .PHONY : image.cpp.i
 
 image.s: image.cpp.s
@@ -150,7 +150,7 @@ image.s: image.cpp.s
 
 # target to generate assembly for a file
 image.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/image.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/image-processor.dir/build.make CMakeFiles/image-processor.dir/image.cpp.s
 .PHONY : image.cpp.s
 
 main.o: main.cpp.o
@@ -158,7 +158,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/image-processor.dir/build.make CMakeFiles/image-processor.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -166,7 +166,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/image-processor.dir/build.make CMakeFiles/image-processor.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -174,7 +174,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/image-processor.dir/build.make CMakeFiles/image-processor.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -185,7 +185,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... wowser"
+	@echo "... image-processor"
 	@echo "... image.o"
 	@echo "... image.i"
 	@echo "... image.s"

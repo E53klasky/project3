@@ -9,9 +9,11 @@ using namespace std;
 
 // When you WRITE IT OVER RIGHTS THE FILES SETTING IT TO 0 !!!!!!!!!!!!!!
 // --------READING AND WRIGHTING-------------------------------------
+
 void image::TGAReader(const string fileName) {
 
-    fstream fileStream(fileName , ios::in | ios::binary);
+
+    fstream fileStream(fileName , ios_base::in | ios::binary);
 
 
     if (header == nullptr) {
@@ -19,7 +21,7 @@ void image::TGAReader(const string fileName) {
         header = new Header;
     }
 
-    if (!fileStream.is_open()) throw invalid_argument("No file");
+    if (!fileStream.is_open()) throw invalid_argument("No file?????");
 
     fileStream.read(&header->idLength , sizeof(header->idLength));
     fileStream.read(&header->colorMapType , sizeof(header->colorMapType));
@@ -34,20 +36,20 @@ void image::TGAReader(const string fileName) {
     fileStream.read(&header->bitsPerPixel , sizeof(header->bitsPerPixel));
     fileStream.read(&header->imageDescriptor , sizeof(header->imageDescriptor));
 
-    // pixels
+        // pixels
 
-    /*
-     to store the TGA file? You would need...
-• The header. 18 bytes worth of data (even if you really only care about 4 bytes – 2 bytes for width,
-2 for height). You will need all 18 bytes of this header data to properly write a .TGA file.
-• The pixels. A pixel is 3 values: R, G, and B, and each of those is a number from 0-255 (an unsigned
-char fits this perfectly). You will need a way to store a lot of them; a medium-sized image that’s
-512x512 contains 262,144 pixels
+        /*
+         to store the TGA file? You would need...
+    • The header. 18 bytes worth of data (even if you really only care about 4 bytes – 2 bytes for width,
+    2 for height). You will need all 18 bytes of this header data to properly write a .TGA file.
+    • The pixels. A pixel is 3 values: R, G, and B, and each of those is a number from 0-255 (an unsigned
+    char fits this perfectly). You will need a way to store a lot of them; a medium-sized image that’s
+    512x512 contains 262,144 pixels
 
-    */
-    //fileStream.seekg(18 , ios::beg);
+        */
+       // fileStream.seekg(18 , ios::beg);
 
-    // if (eof) is true then you are at the end of the file
+        // if (eof) is true then you are at the end of the file
     this->pixels = new char[header->height * header->width * 3];
 
     // Read pixel data
@@ -55,12 +57,12 @@ char fits this perfectly). You will need a way to store a lot of them; a medium-
 
 
     //prints out the image for testing
-    // for (int i = 0; i < 100; i++) {
-    //     unsigned char red = pixels[i * 3];
-    //     unsigned char green = pixels[i * 3 + 1];
-    //     unsigned char blue = pixels[i * 3 + 2];
-    //     cout << "Pixel " << i << ": R=" << (int)red << " G=" << (int)green << " B=" << (int)blue << endl;
-    // }
+    for (int i = 0; i < 10; i++) {
+        unsigned char blue = pixels[i * 3];
+        unsigned char green = pixels[i * 3 + 1];
+        unsigned char red = pixels[i * 3 + 2];
+        cout << "Pixel " << i << ": B=" << (int)blue << " G=" << (int)green << " R=" << (int)red << endl;
+    }
 
     fileStream.close();
 
@@ -70,27 +72,36 @@ char fits this perfectly). You will need a way to store a lot of them; a medium-
 // When you WRITE IT OVER RIGHTS THE FILES SETTING IT TO 0 !!!!!!!!!!!!!!
 void image::TGAWriter(string outPutFile)
 {
-    // fstream fileStream(outPutFile , ios::binary | ios::out);
 
-    // fileStream.write(&header->idLength , sizeof(header->idLength));
-    // fileStream.write(&header->colorMapType , sizeof(header->colorMapType));
-    // fileStream.write(&header->dataTypeCode , sizeof(header->dataTypeCode));
-    // fileStream.write((char*)&header->colorMapOrigin , sizeof(header->colorMapOrigin));
-    // fileStream.write((char*)&header->colorMapLength , sizeof(header->colorMapLength));
-    // fileStream.write(&header->colorMapDepth , sizeof(header->colorMapDepth));
-    // fileStream.write((char*)&header->xOrigin , sizeof(header->xOrigin));
-    // fileStream.write((char*)&header->yOrigin , sizeof(header->yOrigin));
-    // fileStream.write((char*)&header->width , sizeof(header->width));
-    // fileStream.write((char*)&header->height , sizeof(header->height));
-    // fileStream.write(&header->bitsPerPixel , sizeof(header->bitsPerPixel));
-    // fileStream.write(&header->imageDescriptor , sizeof(header->imageDescriptor));
+    fstream fileStream(outPutFile , ios_base::out | ios_base::binary);
 
 
-     //  fileStream.write(this->pixels , header->height * header->width * 3);
-    cout << "I RAN????????????\n";
+    fileStream.write(&header->idLength , sizeof(header->idLength));
+    fileStream.write(&header->colorMapType , sizeof(header->colorMapType));
+    fileStream.write(&header->dataTypeCode , sizeof(header->dataTypeCode));
+    fileStream.write((char*)&header->colorMapOrigin , sizeof(header->colorMapOrigin));
+    fileStream.write((char*)&header->colorMapLength , sizeof(header->colorMapLength));
+    fileStream.write(&header->colorMapDepth , sizeof(header->colorMapDepth));
+    fileStream.write((char*)&header->xOrigin , sizeof(header->xOrigin));
+    fileStream.write((char*)&header->yOrigin , sizeof(header->yOrigin));
+    fileStream.write((char*)&header->width , sizeof(header->width));
+    fileStream.write((char*)&header->height , sizeof(header->height));
+    fileStream.write(&header->bitsPerPixel , sizeof(header->bitsPerPixel));
+    fileStream.write(&header->imageDescriptor , sizeof(header->imageDescriptor));
 
 
-    //fileStream.close();
+    fileStream.write(this->pixels , header->height * header->width * 3);
+    cout << "Wrote to disk????????????\n";
+
+    for (int i = 0; i < 10; i++) {
+        unsigned char blue = pixels[i * 3];
+        unsigned char green = pixels[i * 3 + 1];
+        unsigned char red = pixels[i * 3 + 2];
+        cout << "Pixel " << i << ": B=" << (int)blue << " G=" << (int)green << " R=" << (int)red << endl;
+    }
+
+
+    fileStream.close();
 
 }
 
@@ -137,46 +148,61 @@ void image::printHeader(const Header& header)
 }
 
 
+unsigned int image::convertCharToInt(unsigned char ltr)
+{
+    return (unsigned int)(ltr - '\0');
+}
+
+unsigned char image::convertIntToChar(unsigned int num)
+{
+    return (unsigned char)(num + '\0');
+}
+
+
 
 //------------------------pixel manipulation ---------------------------
 
+// TODO: bug with this code
 void image::multiply(const image& diffImage)
 {
     if (header->width != diffImage.header->width || header->height != diffImage.header->height) {
         throw invalid_argument("ERROR!!!!!! This doesn't work");
     }
+
     size_t numPixels = header->width * header->height * 3;
     for (size_t i = 0; i < numPixels; i++)
     {
-        pixels[i] = static_cast<unsigned char>((pixels[i] / 255.0 * diffImage.pixels[i] / 255.0) * 255);
+        float thisPix = (float)pixels[i] / 255.0f;
+        float diffPix = (float)diffImage.pixels[i] / 255.0f;
+
+        float result = 0.5 + ((thisPix * diffPix) * 255.0f);
+        pixels[i] = static_cast<unsigned char>(result);
     }
 
-     // this checks for core dumps
-    cout << " done multipling ";
+    cout << " done multiplying \n";
 }
 
 
 
-
+// BGR
+// QUESTIONS WIth CASTING THIS ONE!!!!!!!!!
 void image::scaleImageColor(int scalar , const string color)
 {
-    // CORE DUMPS
     //    size_t numPixels = header->width * header->height * 3;
-    // IDK IF THIS WORKS ANYMORE 8 is weird
 
     size_t numPixels = header->width * header->height; // works like this ???????????? why 
 
     for (size_t i = 0; i < numPixels; i++) {
-        if (color == "red") {
-           // cout << "It works for i = R " << i << endl;
+        if (color == "blue") {
+           // cout << "It works for i = B " << i << endl;
             pixels[i * 3] = min(255 , max(0 , static_cast<char>(static_cast<unsigned int>(pixels[i * 3])) * scalar));
         }
         else if (color == "green") {
            // cout << "It works for i = G" << i << endl;
             pixels[i * 3 + 1] = min(255 , max(0 , static_cast<char>(static_cast<unsigned int>(pixels[i * 3 + 1])) * scalar));
         }
-        else if (color == "blue") {
-           // cout << "It works for i = B " << i << endl;
+        else if (color == "red") {
+           // cout << "It works for i = R " << i << endl;
             pixels[i * 3 + 2] = min(255 , max(0 , static_cast<char>(static_cast<unsigned int>(pixels[i * 3 + 2])) * scalar));
         }
     }
@@ -185,21 +211,17 @@ void image::scaleImageColor(int scalar , const string color)
 
 
 
-
+// BGR 
 void image::add(int num , const string& color)
 {
-    size_t numPixels = header->width * header->height; // works like this ???????????? why 
-    /// maybe too tired idk  I get themultiplications we trying to do that strong proff by induciton struff
-    // ya know 
+    size_t numPixels = header->width * header->height;
 
-
-   // NO CORE DUMPS BUT NEED TO CHECK IF IT is ACTUALLY RIGHT
     //size_t numPixels = header->width * header->height * 3;
 
    // cout << "It number of pixels" << numPixels << endl;
     for (size_t i = 0; i < numPixels; i++) {
-        if (color == "red") {
-            //cout << "It works for i = R " << i << endl;
+        if (color == "blue") {
+            //cout << "It works for i = B " << i << endl;
 
             pixels[i * 3] = min(255 , max(0 , pixels[i * 3] + num));
         }
@@ -207,8 +229,8 @@ void image::add(int num , const string& color)
             //cout << "It works for i = G" << i << endl;
             pixels[i * 3 + 1] = min(255 , max(0 , pixels[i * 3 + 1] + num));
         }
-        else if (color == "blue") {
-            //cout << "It works for i = B " << i << endl;
+        else if (color == "red") {
+            //cout << "It works for i = R " << i << endl;
             pixels[i * 3 + 2] = min(255 , max(0 , pixels[i * 3 + 2] + num));
         }
     }
@@ -218,15 +240,26 @@ void image::add(int num , const string& color)
 }
 
 
-void image::subtract(const image& diffImage) {
+void image::subtract(image& diffImage) {
 
+    // times 3 when literally all pixels
     if (header->width != diffImage.header->width || header->height != diffImage.header->height) {
         throw invalid_argument("ERROR!!!!!! This doesn't work");
     }
 
     size_t numPixels = header->width * header->height * 3;
     for (size_t i = 0; i < numPixels; i++) {
-        pixels[i] = max(0 , pixels[i] - diffImage.pixels[i]);
+       // cout << "cars fisrt pixel: " << static_cast<int> pixels[i] << " layerTwos first pixel " << static_cast<int> diffImage.pixels[i] << endl;
+        int myPix = convertCharToInt(pixels[i]);
+        int diffPix = convertCharToInt(diffImage.pixels[i]);
+        int test = (myPix - diffPix);
+        //cout << "val: " << test << " i: " << i << endl;
+       
+        int diff = myPix - diffPix;
+        int vals = max(0 , diff);
+       // cout << "vals: " << vals << " i: " << i << endl;
+        pixels[i] = convertIntToChar(vals);
+      
     }
 
     // this checks for core dumps
@@ -264,6 +297,7 @@ void image::overlay(const image& diffImage)
     if (thisHeader.width != diffHeader.width || thisHeader.height != diffHeader.height) {
         throw invalid_argument("ERROR!!!!!! This doesn't work OH NO!!!!!!!");
     }
+
     size_t numPixels = thisHeader.width * thisHeader.height;
     for (size_t i = 0; i < numPixels; i++)
     {
@@ -295,6 +329,8 @@ void image::screen(const image& diffImage)
     cout << "DONE WITH SCREENING\n";
 }
 
+
+// I may have trouble with this one!!!!!!!
 void image::combineThree(const image& green , const image& blue)
 {
     image::Header redHeader = this->getHeader();
@@ -317,6 +353,7 @@ void image::combineThree(const image& green , const image& blue)
 
 }
 
+// BGR NOT RGB
 void image::onlyColor(const std::string& color)
 {
     size_t numPixels = header->width * header->height;
@@ -371,7 +408,7 @@ void image::carbonCopies(const image& diffImage)
     image::Header thisHeader = this->getHeader();
 
     if (thisHeader.width != diffHeader.width || thisHeader.height != diffHeader.height) {
-        throw invalid_argument("ERROR!!!!!! This doesn't work OH NO!!!!!!!");
+        throw std::invalid_argument("ERROR!!!!!! This doesn't work OH NO!!!!!!!");
     }
 
     size_t numPixels = thisHeader.width * thisHeader.height;
@@ -396,6 +433,7 @@ void image::carbonCopies(const image& diffImage)
             }
             else {
                 cout << "Pixel " << i << " is different in the images." << endl;
+                break;
             }
 
             tester++;
@@ -408,7 +446,6 @@ void image::carbonCopies(const image& diffImage)
 
     cout << "done testing\n";
 }
-
 
 
 // -------------copy constructor --------------------------

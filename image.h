@@ -37,13 +37,15 @@ public:
     void setHeader(Header& header);
     void printHeader(const Header& header);
 
+    unsigned int convertCharToInt(unsigned char ltr);
+    unsigned char convertIntToChar(unsigned int num);
 
 
-    // maniplualtion of functions 
+        // maniplualtion of functions 
     void multiply(const image& diffImage);
     void add(int num , const string& color);
     void scaleImageColor(int scalar , const string color);
-    void subtract(const image& diffImage);
+    void subtract(image& diffImage);
     void rotate180();
     void overlay(const image& diffImage);
     void screen(const image& diffImage);

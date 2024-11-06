@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/adios/project3/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/wowser.dir/all
+all: CMakeFiles/image-processor.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/wowser.dir/clean
+clean: CMakeFiles/image-processor.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/wowser.dir
+# Target rules for target CMakeFiles/image-processor.dir
 
 # All Build rule for target.
-CMakeFiles/wowser.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/adios/project3/build/CMakeFiles --progress-num=1,2,3 "Built target wowser"
-.PHONY : CMakeFiles/wowser.dir/all
+CMakeFiles/image-processor.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/image-processor.dir/build.make CMakeFiles/image-processor.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/image-processor.dir/build.make CMakeFiles/image-processor.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/adios/project3/build/CMakeFiles --progress-num=1,2,3 "Built target image-processor"
+.PHONY : CMakeFiles/image-processor.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/wowser.dir/rule: cmake_check_build_system
+CMakeFiles/image-processor.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/adios/project3/build/CMakeFiles 3
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/wowser.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/image-processor.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/adios/project3/build/CMakeFiles 0
-.PHONY : CMakeFiles/wowser.dir/rule
+.PHONY : CMakeFiles/image-processor.dir/rule
 
 # Convenience name for target.
-wowser: CMakeFiles/wowser.dir/rule
-.PHONY : wowser
+image-processor: CMakeFiles/image-processor.dir/rule
+.PHONY : image-processor
 
 # clean rule for target.
-CMakeFiles/wowser.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/wowser.dir/build.make CMakeFiles/wowser.dir/clean
-.PHONY : CMakeFiles/wowser.dir/clean
+CMakeFiles/image-processor.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/image-processor.dir/build.make CMakeFiles/image-processor.dir/clean
+.PHONY : CMakeFiles/image-processor.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
