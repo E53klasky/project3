@@ -3,20 +3,18 @@
 #include <vector>
 #include "image.h"
 #include <fstream>
+#include <ctime>
+#include <chrono>
 using namespace std;
 
-
-// ------------ SECOND BETTER CHECKER ---------------
-/*
-adios@ethanlabtop:~/project3/build$ diff -s ../examples/EXAMPLE_part1.tga ../output/part1.tga
-Files ../examples/EXAMPLE_part1.tga and ../output/part1.tga are identical
-adios@ethanlabtop:~/project3/build$ diff -s ../examples/EXAMPLE_part2.tga ../output/part2.tga
-Files ../examples/EXAMPLE_part2.tga and ../output/part2.tga are identical
-adios@ethanlabtop:~/project3/build$ diff -s ../examples/EXAMPLE_part3.tga ../output/part3.tga
-Files ../examples/EXAMPLE_part3.tga and ../output/part3.tga are identical
-adios@ethanlabtop:~/project3/build$ diff -s ../examples/EXAMPLE_part4.tga ../output/part4.tga
-Files ../examples/EXAMPLE_part4.tga and ../output/part4.tga are identical
-*/
+inline long long systemTimeNanoseconds()
+{
+  return std::chrono::duration_cast<std::chrono::milliseconds>(
+    std::chrono::time_point_cast<std::chrono::milliseconds>(
+      std::chrono::system_clock::now()
+    ).time_since_epoch()
+  ).count();
+}
 
 // done !!!!!!!!!!
 void taskOne(image& layerOne , image& patternOne)
@@ -211,12 +209,8 @@ void taskTen(image& textTwo)
 int main()
 {
 
- // 1.3 test them
- // 1.4 see TA if needed????????
- // 2. debug them
- // 3. make bouns test it and free memory
- // 4. see a TA before submiting it if you can 
-  // pointers being stored on the heap yeah a lot ik 
+  auto now = systemTimeNanoseconds();
+
   image* layerOne = new image;
   image* patternOne = new image;
   image* layerTwo = new image;
@@ -255,6 +249,7 @@ int main()
   delete patternOne;
   delete layerTwo;
   delete car;
+  delete patternTwo;
   delete layerOne2;
   delete text;
   delete layerTwo2;
@@ -276,6 +271,7 @@ int main()
   patternOne = nullptr;
   layerTwo = nullptr;
   car = nullptr;
+  patternTwo = nullptr;
   layerOne2 = nullptr;
   text = nullptr;
   layerTwo2 = nullptr;
@@ -293,7 +289,13 @@ int main()
   blue = nullptr;
   textTwo = nullptr;
 
+
   cout << "code finished \n";
+  auto end = systemTimeNanoseconds();
+
+  double diff = end - now;
+
+  cout << "Time: " << diff << endl;
 
 
   return 0;

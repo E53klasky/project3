@@ -4,6 +4,7 @@
 #include <fstream>
 #include "image.h"
 #include <algorithm> 
+
 using namespace std;
 
 
@@ -42,6 +43,7 @@ void image::TGAReader(const string fileName) {
         // if (eof) is true then you are at the end of the file
 
     this->pixels = new char[header->height * header->width * 3];
+
 
 // Read pixel data
     fileStream.read(this->pixels , header->height * header->width * 3);
@@ -466,24 +468,24 @@ void image::carbonCopies(const image& diffImage)
 }
 
 
-// -------------copy constructor --------------------------
+// // -------------copy constructor --------------------------
 
- // copy constuctor
-    // image(const image& diffImage);
-    // {
-
-
-    //     newImage = dif
-    // }
+//  // copy constuctor
+//     // image(const image& diffImage);
+//     // {
 
 
-// SOMETHING LIKE THIS
-// image operator = (const image& diffImage);
-// {
-//     this->header = diffImage.header;
-//     this->pixels = diffImage.pixels;
-//     return this*;
-// }
+//     //     newImage = dif
+//     // }
+
+
+// // SOMETHING LIKE THIS
+// // image operator = (const image& diffImage);
+// // {
+// //     this->header = diffImage.header;
+// //     this->pixels = diffImage.pixels;
+// //     return this*;
+// // }
 
 
 
