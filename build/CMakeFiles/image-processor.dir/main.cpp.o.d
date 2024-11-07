@@ -161,4 +161,6 @@ CMakeFiles/image-processor.dir/main.cpp.o: /home/adios/project3/main.cpp \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/stl_heap.h \
  /usr/include/c++/11/bits/stl_tempbuf.h \
- /usr/include/c++/11/bits/uniform_int_dist.h
+ /usr/include/c++/11/bits/uniform_int_dist.h /usr/include/c++/11/ctime \
+ /usr/include/c++/11/chrono /usr/include/c++/11/ratio \
+ /usr/include/c++/11/limits /usr/include/c++/11/bits/parse_numbers.h
