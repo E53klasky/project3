@@ -48,7 +48,7 @@ void image::TGAReader(const string fileName) {
 
 
     //prints out the image for testing
-    cout << "READING IN\n";
+    // cout << "READING IN\n";
     // for (int i = 0; i < 10; i++) {
     //     unsigned char blue = pixels[i * 3];
     //     unsigned char green = pixels[i * 3 + 1];
@@ -83,14 +83,14 @@ void image::TGAWriter(string outPutFile)
 
 
     fileStream.write(this->pixels , header->height * header->width * 3);
-    cout << "Wrote to disk????????????\n";
-    cout << "the first 10 pixles: \n";
-    for (int i = 0; i < 10; i++) {
-        unsigned char blue = pixels[i * 3];
-        unsigned char green = pixels[i * 3 + 1];
-        unsigned char red = pixels[i * 3 + 2];
-        cout << "Pixel " << i << ": B=" << (int)blue << " G=" << (int)green << " R=" << (int)red << endl;
-    }
+    cout << "Done wrighting\n";
+    // cout << "the first 10 pixles: \n";
+    // for (int i = 0; i < 10; i++) {
+    //     unsigned char blue = pixels[i * 3];
+    //     unsigned char green = pixels[i * 3 + 1];
+    //     unsigned char red = pixels[i * 3 + 2];
+    //     cout << "Pixel " << i << ": B=" << (int)blue << " G=" << (int)green << " R=" << (int)red << endl;
+    // }
 
 
     fileStream.close();
@@ -184,7 +184,6 @@ void image::multiply(const image& diffImage)
 // QUESTIONS WIth CASTING THIS ONE!!!!!!!!!
 void image::scaleImageColor(int scalar , const string color)
 {
-    //    size_t numPixels = header->width * header->height * 3;
 
     size_t numPixels = header->width * header->height; // works like this ???????????? why 
 
@@ -267,26 +266,20 @@ void image::subtract(image& diffImage) {
     // this checks for core dumps
     cout << " done  subtracting\n";
 }
+// rotate
+void image::rotate180() {
+    image::Header header = this->getHeader();
+    int totalPixels = header.width * header.height;
+    for (int i = 0; i < totalPixels / 2; i++) {
 
-void image::rotate180()
-{
-       // NO CORE DUMPS BUT NEED TO CHECK IF IT is ACTUALLY RIGHT
-    int rowSize = header->width * 3;
-    int halfHeight = header->height / 2;
-
-    for (int i = 0; i < halfHeight; i++) {
-        int topRow = i * rowSize;
-        int bottomRow = (header->height - i - 1) * rowSize;
-
-        for (int j = 0; j < rowSize; j++) {
-            swap(pixels[topRow + j] , pixels[bottomRow + j]);
+        for (int j = 0; j < 3; j++) {
+            std::swap(pixels[i * 3 + j] , pixels[(totalPixels - i - 1) * 3 + j]);
         }
     }
-
-    // this checks for core dumps
-    cout << " rotating done \n";
-
+    std::cout << "Rotating 180 degrees done\n";
 }
+
+
 
 
 // this one
@@ -305,12 +298,21 @@ void image::overlay(const image& diffImage)
     for (size_t i = 0; i < numPixels; i++)
     {
 
-        if (convertIntToChar(convertCharToInt(pixels[i]) + convertCharToInt(diffImage.pixels[i])) > 255) {
-            pixels[i] = 255;
-        }
+        float thisPix = static_cast<float>(convertCharToInt(pixels[i])) / 255.0f;
+        float diffPix = static_cast<float> (convertCharToInt(diffImage.pixels[i])) / 255.0f;
 
-        else {
-            pixels[i] = convertIntToChar(convertCharToInt(pixels[i]) + convertCharToInt(diffImage.pixels[i]));
+        if (diffPix >= 0.5)
+        {
+
+            int overLayed = ((1 - 2 * (1 - diffPix) * (1 - thisPix)) * 255) + 0.5f;
+            pixels[i] = static_cast<unsigned char>(overLayed);
+        }
+        else
+        {
+
+            int overLayed = (thisPix * 2 * diffPix * 255) + 0.5;
+            overLayed = min(255 , overLayed);
+            pixels[i] = static_cast<unsigned char>(overLayed);
         }
 
     }
@@ -356,7 +358,7 @@ void image::combineThree(const image& green , const image& blue)
     for (size_t i = 0; i < numPixels; i++)
     {
         pixels[i * 3 + 1] = green.pixels[i * 3 + 1];
-        pixels[i * 3 + 2] = blue.pixels[i * 3 + 2];
+        pixels[i * 3] = blue.pixels[i * 3];
     }
 
 
@@ -447,8 +449,8 @@ void image::carbonCopies(const image& diffImage)
             }
             else {
                 cout << "Pixel " << i << " is different in the images." << endl;
-                cout << "Example pixle value is " << convertCharToInt(diffImage.pixels[i]) << endl;
-                cout << "Your pixle value is " << convertCharToInt(pixels[i]) << endl;
+               // cout << "Example pixle value is " << convertCharToInt(diffImage.pixels[i]) << endl;
+                // cout << "Your pixle value is " << convertCharToInt(pixels[i]) << endl;
                 break;
             }
 

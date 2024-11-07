@@ -96,13 +96,17 @@ void taskFour(image& layerTwo , image& circles , image& patternTwo)
 
 }
 
-// still working on !!!!!!!!!!!
+// done
 void taskFive(image& layerOne , image& patterOne)
 {
   layerOne.TGAReader("../input/layer1.tga");
   patterOne.TGAReader("../input/pattern1.tga");
   layerOne.overlay(patterOne);
   layerOne.TGAWriter("../output/part5.tga");
+
+  // image* example5 = new image;
+  // example5->TGAReader("../examples/EXAMPLE_part5.tga");
+  // example5->carbonCopies(layerOne);
 
 }
 
@@ -168,11 +172,16 @@ void taskEight(image& carOne , image& carTwo , image& carThree)
 
 void taskNine(image& red , image& green , image& blue)
 {
-  red.TGAReader("input/layer_red.tga");
-  green.TGAReader("input/layer_green.tga");
-  blue.TGAReader("input/layer_blue.tga");
+  red.TGAReader("../input/layer_red.tga");
+  green.TGAReader("../input/layer_green.tga");
+  blue.TGAReader("../input/layer_blue.tga");
   red.combineThree(green , blue);
-  red.TGAWriter("../output/task9.tga");
+  red.TGAWriter("../output/part9.tga");
+
+  // image* example9 = new image;
+  // example9->TGAReader("../examples/EXAMPLE_part9.tga");
+  // example9->carbonCopies(red);
+
 }
 
 
@@ -180,9 +189,14 @@ void taskNine(image& red , image& green , image& blue)
 
 void taskTen(image& textTwo)
 {
-  textTwo.TGAReader("input/text2.tga");
+  textTwo.TGAReader("../input/text2.tga");
   textTwo.rotate180();
-  textTwo.TGAWriter("../output/task10");
+  textTwo.TGAWriter("../output/part10.tga");
+
+  // image* example10 = new image;
+  // example10->TGAReader("../examples/EXAMPLE_part10.tga");
+  // example10->carbonCopies(textTwo);
+
 
 }
 
@@ -220,15 +234,21 @@ int main()
   image* carOne = new image;
   image* carTwo = new image;
   image* carThree = new image;
+  image* red = new image;
+  image* green = new image;
+  image* blue = new image;
+  image* textTwo = new image;
 
-  // taskOne(*layerOne , *patternOne);
-  // taskTwo(*layerTwo , *car);
-  // taskThree(*layerOne2 , *patternTwo , *text);
-  // taskFour(*layerTwo2 , *circles , *patternTwo2);
-  // // //taskFive(*layerOne3 , *patternOne2); // skip for now don't know how to do !!!!!!!!!
-  // taskSix(*car1);
-  // taskSeven(*car2);
+  taskOne(*layerOne , *patternOne);
+  taskTwo(*layerTwo , *car);
+  taskThree(*layerOne2 , *patternTwo , *text);
+  taskFour(*layerTwo2 , *circles , *patternTwo2);
+  taskFive(*layerOne3 , *patternOne2);
+  taskSix(*car1);
+  taskSeven(*car2);
   taskEight(*carOne , *carTwo , *carThree);
+  taskNine(*red , *green , *blue);
+  taskTen(*textTwo);
 
   // THERE IS SOMETHING WRONG WITH MY DECSTRUCTOR IT IS DOING SOMETHING WEIRD
   delete layerOne;
@@ -247,6 +267,10 @@ int main()
   delete carOne;
   delete carTwo;
   delete carThree;
+  delete red;
+  delete green;
+  delete blue;
+  delete textTwo;
 
   layerOne = nullptr;
   patternOne = nullptr;
@@ -264,6 +288,10 @@ int main()
   carOne = nullptr;
   carTwo = nullptr;
   carThree = nullptr;
+  red = nullptr;
+  green = nullptr;
+  blue = nullptr;
+  textTwo = nullptr;
 
   cout << "code finished \n";
 
